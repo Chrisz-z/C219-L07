@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1</title>
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <style>
+        /* Initial styling for the displayed form data */
+        #display-form-data {
+            display: none;
+            font-family: Arial;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f0f0f0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="myForm" onsubmit="displayFormData()">
+        <!-- Two text fields - Name and Email -->
+        <input id="name" type="text" placeholder="Name" value=""><br><br>
+        <input id="email" type="email" placeholder="Email" value=""><br><br>
+        <!-- Two radio buttons for Gender - Male and Female -->
+        <label for="gender">Gender:</label>
+        <input type="radio" name="gender" value="male" id="gender-male"> Male
+        <input type="radio" name="gender" value="female" id="gender-female"> Female
+        <!-- Submit button -->
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Display form data -->
+    <div id="display-form-data"></div>
+
+    <script>
+        // JavaScript to get and display form data
+        function displayFormData() {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+
+            const displayElement = $('#display-form-data');
+            displayElement.html(`
+        <h2>Form Data</h2>
+        <p>Name: ${name}</p>
+        <p>Email: ${email}</p>
+        <p>Gender: ${gender}</p>
+      `);
+
+            // Fade in the form data
+            displayElement.fadeIn();
+        }
+
+        // jQuery to add additional styling and behavior
+        $(document).ready(function () {
+            // Change font, add border and background color
+            $('#display-form-data').css({
+                'font-family': 'Arial',
+                'border': '1px solid #333',
+                'background-color': '#e0e0e0'
+            });
+
+            // Slide up the form data on mouseover
+            $('#display-form-data').mouseover(function () {
+                $(this).slideUp();
+            });
+        });
+    </script>
+</body>
+
+</html>

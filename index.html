@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add Bootstrap CSS here -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Add Bootstrap JS here -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <script src="https://kit.fontawesome.com/bf1aa109b0.js" crossorigin="anonymous"></script>
+    <title>SOI Learning Portal</title>
+    <style>
+        .header-div {
+            flex-direction: column;
+        }
+
+        .btn-bookmark {
+            border: none;
+            background: none;
+            padding: 0;
+            font-size: inherit;
+            color: inherit;
+            z-index: 2;
+            position: relative;
+        }
+
+        .carousel-control-next {
+            z-index: 1;
+        }
+
+        #tagContainer {
+            position: relative;
+            display: inline-block;
+        }
+
+        #tagInput {
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        #tagSuggestions {
+            display: none;
+            position: absolute;
+            top: 100%;
+            border: 1px solid #ccc;
+            max-height: 150px;
+            overflow-y: auto;
+            background-color: #fff;
+            z-index: 1;
+        }
+
+        .suggestion {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .suggestion:hover {
+            background-color: #f0f0f0;
+        }
+
+        #avatarIcon {
+        border-radius: 50%;
+        width: 30px; 
+        height: 30px; 
+        line-height: 30px;
+        text-align: center;
+        background-color: #00FF00; 
+        color: #000;
+        cursor: pointer;
+        margin:10px 10px;
+    }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">SOI Learning Portal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggler">
+                <ul class="navbar-nav col-sm-11">
+                    <li class="nav-item"><a class="nav-link active" href="#">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Courses</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">HTML</a></li>
+                            <li><a class="dropdown-item" href="#">CSS</a></li>
+                            <li><a class="dropdown-item" href="#">PHP</a></li>
+                            <li><a class="dropdown-item" href="#">Javascript</a></li>
+                            <li><a class="dropdown-item" href="#">Python</a></li>
+                            <li><a class="dropdown-item" href="#">Java</a></li>
+                            <li><a class="dropdown-item" href="#">iOS</a></li>
+                            <li><a class="dropdown-item" href="#">React</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                    <div>
+                        <label for="tagInput"></label>
+                        <input type="text" id="tagInput" autocomplete="off" placeholder="search">
+                        <div id="tagSuggestions"></div>
+                    </div>
+                </ul>
+                <div class="nav-icons col-sm-1 float-start -30">
+                    <a href="#" style="color: #000;"><i class="fa-solid fa-bell"></i></a>
+                    <a href="#" class="user-circle m-10" id="avatarToggle"><i
+                            class="fa-solid fa-user" id="avatarIcon"></i></a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid p-5 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 d-flex justify-content-center align-items-center header-div">
+                    <h1>Welocome to SOI Learning Portal</h1>
+                    <p>Expertly crafted course that best fit your learning needs and preefrences.</p>
+                    <div class="btn-div">
+                        <button class="btn btn-light">Broswe Courses</button>
+                        <button class="btn btn-light">Be An Instructor</button>
+                    </div>
+
+                </div>
+                <div class="col-md-5  text-center">
+                    <img src="man.png" class="img-fluid"></img>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="background-color: whitesmoke; color: black; padding: 20px;">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+
+                <div class="col-md-4 col-sm-12">
+                    <div class="d-flex justify-content-center">
+                        <a href="#" class="icon"
+                            style="padding: .8rem; background: azure; border-radius: .8rem; color: black;"><i
+                                class="fa-solid fa-book"></i></a>
+                        <div style="margin-left: 0.5rem;">
+                            <p class="h6"><b>158 online courses</b></p>
+                            <p class="h6">Enjoy a variety of fresh topics</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-12">
+                    <div class="d-flex justify-content-center">
+                        <a href="#" class="icon"
+                            style="padding: .8rem; background: azure; border-radius: .8rem; color: black;"><i
+                                class="fa-solid fa-user"></i></a>
+                        <div style="margin-left: 0.5rem;">
+                            <p class="h6"><b>Expert instruction</b></p>
+                            <p class="h6">Find the right instructor for you</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-12">
+                    <div class="d-flex justify-content-center">
+                        <a href="#" class="icon"
+                            style="padding: .8rem; background: azure; border-radius: .8rem; color: black;"><i
+                                class="fa-solid fa-clock-rotate-left"></i></a>
+                        <div style="margin-left: 0.5rem;">
+                            <p class="h6"><b>Lifetime access</b></p>
+                            <p class="h6">Learn on your schedule</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container-fluid p-5 bg-white text-dark">
+                    <div class="row p-5">
+                        <div class="col-lg-3 pb-5">
+                            <div class="card">
+                                <img src="html.png" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">Introduction to HTML and CSS</h5>
+                                    <p class="card-text">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <small class="text-muted">2h 30m</small>
+                                    </p>
+                                </div>
+                                <div class="card-body">
+                                    <i class="fa-solid fa-user"></i>
+                                    Hannah Lim
+                                    <div class="float-end">
+                                        <button class="btn-bookmark" type="button" data-bs-toggle="offcanvas"
+                                            data-bs-target="#html" aria-controls="offcanvasBottom">
+                                            <i class="fa-solid fa-bookmark" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Add to Bookmarks"></i>
+                                        </button>
+
+                                        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="html"
+                                            aria-labelledby="offcanvasBottomLabel">
+                                            <div class="offcanvas-header">
+                                            </div>
+                                            <div class="offcanvas-body small">
+                                                <div class="card col-lg-3 pb-5">
+                                                    <img src="html.png" class="card-img-top">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Introduction to HTML and CSS</h5>
+                                                        <p class="card-text">
+                                                            <i class="fa-regular fa-clock"></i>
+                                                            <small class="text-muted">2h 30m</small>
+                                                        </p>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <i class="fa-solid fa-user"></i>
+                                                        Hannah Lim
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 pb-5">
+                            <div class="card">
+                                <img src="ui-ux.png" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">User Experience and Interface Design</h5>
+                                    <p class="card-text">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <small class="text-muted">2h 45m</small>
+                                    </p>
+                                </div>
+                                <div class="card-body">
+                                    <i class="fa-solid fa-user"></i>
+                                    Julia Lee
+                                    <div class="float-end">
+                                        <button class="btn-bookmark" type="button" data-bs-toggle="offcanvas"
+                                            data-bs-target="#UI" aria-controls="offcanvasBottom">
+                                            <i class="fa-solid fa-bookmark" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Add to Bookmarks"></i>
+                                        </button>
+
+                                        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="UI"
+                                            aria-labelledby="offcanvasBottomLabel">
+                                            <div class="offcanvas-header">
+                                            </div>
+                                            <div class="offcanvas-body small">
+                                                <div class="card col-lg-3 pb-5">
+                                                    <img src="ui-ux.png" class="card-img-top">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">User Experience and Interface Design</h5>
+                                                        <p class="card-text">
+                                                            <i class="fa-regular fa-clock"></i>
+                                                            <small class="text-muted">2h 45m</small>
+                                                        </p>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <i class="fa-solid fa-user"></i>
+                                                        Julia Lee
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 pb-5">
+                            <div class="card">
+                                <img src="xcode.jpg" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">iOS App Development using Xcode and Swift</h5>
+                                    <p class="card-text">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <small class="text-muted">4h 30m</small>
+                                    </p>
+                                </div>
+                                <div class="card-body">
+                                    <i class="fa-solid fa-user"></i>
+                                    Ryan Low
+                                    <div class="float-end">
+                                        <button class="btn-bookmark" type="button" data-bs-toggle="offcanvas"
+                                            data-bs-target="#iOS" aria-controls="offcanvasBottom">
+                                            <i class="fa-solid fa-bookmark" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Add to Bookmarks"></i>
+                                        </button>
+
+                                        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="iOS"
+                                            aria-labelledby="offcanvasBottomLabel">
+                                            <div class="offcanvas-header">
+                                            </div>
+                                            <div class="offcanvas-body small">
+                                                <div class="card col-lg-3 pb-5">
+                                                    <img src="xcode.jpg" class="card-img-top">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">iOS App Development using Xcode and Swift
+                                                        </h5>
+                                                        <p class="card-text">
+                                                            <i class="fa-regular fa-clock"></i>
+                                                            <small class="text-muted">4h 30m</small>
+                                                        </p>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <i class="fa-solid fa-user"></i>
+                                                        Ryan Low
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-3 pb-5">
+                            <div class="card">
+                                <img src="js.png" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">Front-end JavaScript Frameworks</h5>
+                                    <p class="card-text">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <small class="text-muted">3h 45m</small>
+                                    </p>
+                                </div>
+                                <div class="card-body">
+                                    <i class="fa-solid fa-user"></i>
+                                    Azhar Kamar
+                                    <div class="float-end">
+                                        <button class="btn-bookmark" type="button" data-bs-toggle="offcanvas"
+                                            data-bs-target="#js" aria-controls="offcanvasBottom">
+                                            <i class="fa-solid fa-bookmark" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Add to Bookmarks"></i>
+                                        </button>
+
+                                        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="js"
+                                            aria-labelledby="offcanvasBottomLabel">
+                                            <div class="offcanvas-header">
+                                            </div>
+                                            <div class="offcanvas-body small">
+                                                <div class="card col-lg-3 pb-5">
+                                                    <img src="js.png" class="card-img-top">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Front-end JavaScript Frameworks</h5>
+                                                        <p class="card-text">
+                                                            <i class="fa-regular fa-clock"></i>
+                                                            <small class="text-muted">3h 45m</small>
+                                                        </p>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <i class="fa-solid fa-user"></i>
+                                                        Azhar Kamar
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container-fluid p-5 bg-white text-dark">
+                    <div class="row p-5">
+                        <div class="col-lg-3 pb-5">
+                            <div class="card">
+                                <img src="unity.jpg" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">Introduction to Immersive Technologies</h5>
+                                    <p class="card-text">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <small class="text-muted">3h 30m</small>
+                                    </p>
+                                </div>
+                                <div class="card-body">
+                                    <i class="fa-solid fa-user"></i>
+                                    Amran Mohamed
+                                    <div class="float-end">
+                                        <button class="btn-bookmark" type="button" data-bs-toggle="offcanvas"
+                                            data-bs-target="#html1" aria-controls="offcanvasBottom">
+                                            <i class="fa-solid fa-bookmark" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Add to Bookmarks"></i>
+                                        </button>
+                                        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="html1"
+                                            aria-labelledby="offcanvasBottomLabel">
+                                            <div class="offcanvas-header">
+                                            </div>
+                                            <div class="offcanvas-body small">
+                                                <div class="card col-lg-3 pb-5">
+                                                    <img src="unity.jpg" class="card-img-top">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Introduction to Immersive Technologies</h5>
+                                                        <p class="card-text">
+                                                            <i class="fa-regular fa-clock"></i>
+                                                            <small class="text-muted">3h 30m</small>
+                                                        </p>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <i class="fa-solid fa-user"></i>
+                                                        Amran Mohamed
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 pb-5">
+                            <div class="card">
+                                <img src="business-intelligence.jpg" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">Introduction to Business Intelligence</h5>
+                                    <p class="card-text">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <small class="text-muted">2h 45m</small>
+                                    </p>
+                                </div>
+                                <div class="card-body">
+                                    <i class="fa-solid fa-user"></i>
+                                    Yong Yoke Fong
+                                    <div class="float-end">
+                                        <button class="btn-bookmark" type="button" data-bs-toggle="offcanvas"
+                                            data-bs-target="#UI1" aria-controls="offcanvasBottom">
+                                            <i class="fa-solid fa-bookmark" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Add to Bookmarks"></i>
+                                        </button>
+
+                                        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="UI1"
+                                            aria-labelledby="offcanvasBottomLabel">
+                                            <div class="offcanvas-header">
+                                            </div>
+                                            <div class="offcanvas-body small">
+                                                <div class="card col-lg-3 pb-5">
+                                                    <img src="business-intelligence.jpg" class="card-img-top">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Introduction to Business Intelligence</h5>
+                                                        <p class="card-text">
+                                                            <i class="fa-regular fa-clock"></i>
+                                                            <small class="text-muted">2h 45m</small>
+                                                        </p>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <i class="fa-solid fa-user"></i>
+                                                        Yong Yoke Fong
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 pb-5">
+                            <div class="card">
+                                <img src="software.jpg" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">Software Testing and Analytics</h5>
+                                    <p class="card-text">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <small class="text-muted">4h 30m</small>
+                                    </p>
+                                </div>
+                                <div class="card-body">
+                                    <i class="fa-solid fa-user"></i>
+                                    Andy Tao
+                                    <div class="float-end">
+                                        <button class="btn-bookmark" type="button" data-bs-toggle="offcanvas"
+                                            data-bs-target="#iOS1" aria-controls="offcanvasBottom">
+                                            <i class="fa-solid fa-bookmark" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Add to Bookmarks"></i>
+                                        </button>
+
+                                        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="iOS1"
+                                            aria-labelledby="offcanvasBottomLabel">
+                                            <div class="offcanvas-header">
+                                            </div>
+                                            <div class="offcanvas-body small">
+                                                <div class="card col-lg-3 pb-5">
+                                                    <img src="software.jpg" class="card-img-top">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Software Testing and Analytics
+                                                        </h5>
+                                                        <p class="card-text">
+                                                            <i class="fa-regular fa-clock"></i>
+                                                            <small class="text-muted">4h 30m</small>
+                                                        </p>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <i class="fa-solid fa-user"></i>
+                                                        Andy Tao
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-3 pb-5">
+                            <div class="card">
+                                <img src="python.png" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">Introduction to Python Programming</h5>
+                                    <p class="card-text">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <small class="text-muted">3h 45m</small>
+                                    </p>
+                                </div>
+                                <div class="card-body">
+                                    <i class="fa-solid fa-user"></i>
+                                    Azhar Kamar
+                                    <div class="float-end">
+                                        <button class="btn-bookmark" type="button" data-bs-toggle="offcanvas"
+                                            data-bs-target="#js1" aria-controls="offcanvasBottom">
+                                            <i class="fa-solid fa-bookmark" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Add to Bookmarks"></i>
+                                        </button>
+
+                                        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="js1"
+                                            aria-labelledby="offcanvasBottomLabel">
+                                            <div class="offcanvas-header">
+                                            </div>
+                                            <div class="offcanvas-body small">
+                                                <div class="card col-lg-3 pb-5">
+                                                    <img src="python.png" class="card-img-top">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Introduction to Python Programming</h5>
+                                                        <p class="card-text">
+                                                            <i class="fa-regular fa-clock"></i>
+                                                            <small class="text-muted">3h 45m</small>
+                                                        </p>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <i class="fa-solid fa-user"></i>
+                                                        Azhar Kamar
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <footer class="d-flex justify-content-between py-3 bg-light mt-auto">
+        <span class="copyright">
+            © 2023 SOI Learning Portal. All Rights Reserved.
+        </span>
+        <span class="links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Feedback</a>
+            <a href="#">Support</a>
+        </span>
+    </footer>
+
+
+    <script>
+         $(document).ready(function () {
+        $("#avatarIcon").css("background-color", "#00FF00");
+        $("#avatarToggle").click(function () {
+            if ($("#avatarIcon").css("background-color") === "rgb(0, 255, 0)") {
+                $("#avatarIcon").css("background-color", "#808080");
+            } else {
+                $("#avatarIcon").css("background-color", "#00FF00");
+            }
+        });
+    });
+    </script>
+
+    <script src="tags.js"></script>
+    <script>
+        var tagInput = document.getElementById("tagInput");
+        var tagSuggestions = document.getElementById("tagSuggestions");
+
+        tagInput.addEventListener("input", function () {
+            var inputValue = tagInput.value.toLowerCase();
+            var suggestions = searchTags.filter(function (tag) {
+                return tag.toLowerCase().includes(inputValue);
+            });
+
+            displaySuggestions(suggestions);
+        });
+
+        function displaySuggestions(suggestions) {
+            if (suggestions.length > 0) {
+                tagSuggestions.innerHTML = "";
+                suggestions.forEach(function (suggestion) {
+                    var suggestionElement = document.createElement("div");
+                    suggestionElement.classList.add("suggestion");
+                    suggestionElement.textContent = suggestion;
+                    suggestionElement.addEventListener("click", function () {
+                        tagInput.value = suggestion;
+                        tagSuggestions.style.display = "none";
+                    });
+                    tagSuggestions.appendChild(suggestionElement);
+                });
+
+                tagSuggestions.style.display = "block";
+            } else {
+                tagSuggestions.style.display = "none";
+            }
+        }
+
+        // Close suggestions when clicking outside the input and suggestions
+        document.addEventListener("click", function (event) {
+            if (!event.target.closest("#tagInput") && !event.target.closest("#tagSuggestions")) {
+                tagSuggestions.style.display = "none";
+            }
+        });
+    </script>
+</body>
+
+
+
+
+</html>
